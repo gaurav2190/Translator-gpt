@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<head>
+  <title>Translator app</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" />
+</head>
+
+<body>
+  <label>Translate the text</label>
+  <input type="text" name="input_text" id="input_text" onpre="submitText()"/>
+  <div class="result">
+    <p id="translated_text" name="translated_text"/>
+  </div>
+  <script>
+    $(document).on('keypress', function(e){
+      if(e.which == 13) {
+        submitText();
+      }
+    });
+    function submitText() {
+      $.ajax({
+					url: "/Translate",
+					type: "POST",
+					data: JSON.stringify({"input_text": $("#input_text").val()}),
+					contentType: "application/json; charset=utf-8",
+          dataType: "text",
+					success: function(response) {
+						$("#translated_text").append('<br />'+response);
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+						console.log("Error: " + textStatus + " - " + errorThrown);
+					}
+				});
+    }
+  </script>
+</body>
