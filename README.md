@@ -14,4 +14,4 @@ To run the application, follow the steps below
 
 4. Run command -> flask run
 
-This opens up an app with a text where you can enter the text and press key. On pressing enter, jquery sends a request to the API which in turn call open ai API and returns a response.
+This opens up an app with a textbox where you can enter text and press Enter key. On pressing enter, jquery sends a request to the API which in turn call open ai API and returns a response.
